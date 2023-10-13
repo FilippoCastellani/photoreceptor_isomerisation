@@ -1,0 +1,8 @@
+# requirements.txt
+
+# Install dependencies
+
+numpy
+pandas
+matplotlib
+scipy
