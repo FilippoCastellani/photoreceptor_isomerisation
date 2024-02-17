@@ -158,5 +158,26 @@ def find_V(value,color, newVcurves,Vnew):
     
     array = np.asarray(array)
     idx = (np.abs(array - value*vmax)).argmin()
+
+    print('The index is:',idx)
+
     return Vnew[idx]
+
+def find_value(voltage,color,newVcurves,Vnew):
+
+    Colormax = np.nanmax(newVcurves[color])
+
+    array = newVcurves[color]
+    array = np.asarray(array)
+    idx = (np.abs(Vnew - voltage)).argmin()
+    result = array[idx]/Colormax
+
+    print('The index is:',idx)
+    print('The desired voltage is:',voltage)
+    print('The voltage found is:',Vnew[idx])
+    print('The result is:',result)
+
+
+    return result
+
 #==============
