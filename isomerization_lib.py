@@ -3,7 +3,7 @@ import numpy as np
 from numpy import diff
 import matplotlib.pyplot as plt
 
-def plot_spectrum(LEDs, x, color_settings, plot_total=True, ylim=None):
+def plot_spectrum(LEDs, x, color_settings, plot_total=True, ylim=None, fontsize=20):
 
     violet = color_settings[0]
     blue   = color_settings[1]
@@ -26,11 +26,11 @@ def plot_spectrum(LEDs, x, color_settings, plot_total=True, ylim=None):
         legend.append('415 nm')
 
     if green>0:
-        ax.plot(x,LEDs[2]*green,    'green', alpha = alpha)
+        ax.plot(x,LEDs[2]*green,    'darkgreen', alpha = alpha)
         legend.append('490 nm')
     
     if yellow>0:
-        ax.plot(x,LEDs[3]*yellow,   'yellow')
+        ax.plot(x,LEDs[3]*yellow,   'limegreen')
         legend.append('530 nm')
     
     if red>0:
@@ -44,17 +44,20 @@ def plot_spectrum(LEDs, x, color_settings, plot_total=True, ylim=None):
 
     ax.fill_between(x,0,LEDs[0]*violet,alpha=0.1, color='violet')
     ax.fill_between(x,0,LEDs[1]*blue,alpha=0.1, color='blue')
-    ax.fill_between(x,0,LEDs[2]*green,alpha=0.1, color='green')
-    ax.fill_between(x,0,LEDs[3]*yellow,alpha=0.1, color='yellow')
+    ax.fill_between(x,0,LEDs[2]*green,alpha=0.1, color='darkgreen')
+    ax.fill_between(x,0,LEDs[3]*yellow,alpha=0.1, color='greenyellow')
     ax.fill_between(x,0,LEDs[4]*red,alpha=0.1, color='red')
 
 
-    ax.legend(legend, bbox_to_anchor=(1.3, 0.8))
+    ax.legend(legend, bbox_to_anchor=(1.3, 0.8), fontsize=fontsize)
 
     if ylim is not None:
         ax.set_ylim(ylim)
-    ax.set_xlabel('Lambda (nm)')
-    ax.set_ylabel('Power (µW/cm²)')
+    ax.set_xlabel('λ (nm)', fontsize=fontsize) 
+    ax.set_ylabel('Power (µW/cm²)', fontsize=fontsize)
+
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
 
     plt.show()
     plt.close()
